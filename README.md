@@ -3,6 +3,8 @@ Multiple User Types | Django
 
 [![Multiple User Types | Django](https://img.youtube.com/vi/f0hdXr2MOEA/0.jpg)](https://www.youtube.com/watch?v=f0hdXr2MOEA)
 
+Video explanation: https://www.youtube.com/watch?v=f0hdXr2MOEA
+
 How to Implement multiple user types with Django in a maintainable way.
 
 Features a brief appearance by Audrey Feldroy, creator of Cookiecutter, https://djangopackages.org, co-author of Two Scoops of Django and Django Crash Course.
