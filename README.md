@@ -16,8 +16,6 @@ Follow me:
 - LinkedIn: https://www.linkedin.com/in/danielfeldroy/
 - Twitch: https://www.twitch.tv/danielfeldroy
 
-Source code: https://github.com/pydanny/django-different-user-models-example
-
 Django Proxy Model docs: https://docs.djangoproject.com/en/3.0/topics/db/models/#proxy-models
 
 I'm also known as "pydanny" and "Daniel Roy Greenfeld". Support my stream and coding efforts:
