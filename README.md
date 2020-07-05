@@ -9,7 +9,7 @@ How to Implement multiple user types with Django in a maintainable way.
 
 Features a brief appearance by Audrey Feldroy, creator of Cookiecutter, https://djangopackages.org, co-author of Two Scoops of Django and Django Crash Course.
 
-You can see me code the whole video, but I frozen a few minutes in. The content is still good though.
+You can see me code the whole video, but I freeze up a few minutes in. The content is still good though.
 
 Follow me:
 - Twitter: https://twitter.com/pydanny
