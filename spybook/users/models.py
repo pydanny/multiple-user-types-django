@@ -9,9 +9,11 @@ class User(AbstractUser):
         SPY = "SPY", "Spy"
         DRIVER = "DRIVER", "Driver"
 
+    base_type = Types.SPY
+
     # What type of user are we?
     type = models.CharField(
-        _("Type"), max_length=50, choices=Types.choices, default=Types.SPY
+        _("Type"), max_length=50, choices=Types.choices, default=base_type
     )
 
     # First Name and Last Name Do Not Cover Name Patterns
@@ -20,6 +22,11 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.type = self.base_type
+        return super().save(*args, **kwargs)
 
 
 class SpyManager(models.Manager):
@@ -34,6 +41,7 @@ class DriverManager(models.Manager):
 
 class Spy(User):
     objects = SpyManager()
+    base_type = User.Types.SPY
 
     class Meta:
         proxy = True
@@ -41,13 +49,9 @@ class Spy(User):
     def whisper(self):
         return "whisper"
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.type = User.Types.SPY
-        return super().save(*args, **kwargs)
-
 
 class Driver(User):
+    base_type = User.Types.DRIVER
     objects = DriverManager()
 
     class Meta:
@@ -56,7 +60,3 @@ class Driver(User):
     def accelerate(self):
         return "Go faster"
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.type = User.Types.DRIVER
-        return super().save(*args, **kwargs)
