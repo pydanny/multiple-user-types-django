@@ -22,3 +22,13 @@ I'm also known as "pydanny" and "Daniel Roy Greenfeld". Support my stream and co
 
 - Buy my books at https://feldroy.com!
 - Sponsor me on github: https://github.com/sponsors/pydanny
+
+# Sample data
+
+From within the `shell_plus` environment:
+
+``` python
+Spy.objects.create(username='daniel', email='daniel@feldroy.com')
+Driver.objects.create(username='audrey', email='audrey@feldroy.com')    
+Driver.objects.create(username='uma', email='uma@feldroy.com') 
+```
