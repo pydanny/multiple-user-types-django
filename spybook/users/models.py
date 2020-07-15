@@ -39,9 +39,18 @@ class DriverManager(models.Manager):
         return super().get_queryset(*args, **kwargs).filter(type=User.Types.DRIVER)
 
 
+class SpyMore(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    gadgets = models.TextField()
+
+
 class Spy(User):
     objects = SpyManager()
     base_type = User.Types.SPY
+
+    @property
+    def more(self):
+        return self.spymore
 
     class Meta:
         proxy = True
@@ -50,9 +59,20 @@ class Spy(User):
         return "whisper"
 
 
+class DriverMore(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    model = models.CharField(max_length=255)
+    make = models.CharField(max_length=255)
+    year = models.IntegerField()
+
+
 class Driver(User):
     base_type = User.Types.DRIVER
     objects = DriverManager()
+
+    @property
+    def more(self):
+        return self.drivermore
 
     class Meta:
         proxy = True
