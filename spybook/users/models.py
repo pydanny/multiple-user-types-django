@@ -9,11 +9,9 @@ class User(AbstractUser):
         SPY = "SPY", "Spy"
         DRIVER = "DRIVER", "Driver"
 
-    base_type = Types.SPY
-
     # What type of user are we?
     type = models.CharField(
-        _("Type"), max_length=50, choices=Types.choices, default=base_type
+        _("Type"), max_length=50, choices=Types.choices, default=Types.SPY
     )
 
     # First Name and Last Name Do Not Cover Name Patterns
@@ -22,11 +20,6 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
-
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.type = self.base_type
-        return super().save(*args, **kwargs)
 
 
 class SpyManager(models.Manager):
@@ -39,18 +32,8 @@ class DriverManager(models.Manager):
         return super().get_queryset(*args, **kwargs).filter(type=User.Types.DRIVER)
 
 
-class SpyMore(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    gadgets = models.TextField()
-
-
 class Spy(User):
     objects = SpyManager()
-    base_type = User.Types.SPY
-
-    @property
-    def more(self):
-        return self.spymore
 
     class Meta:
         proxy = True
@@ -59,20 +42,8 @@ class Spy(User):
         return "whisper"
 
 
-class DriverMore(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    model = models.CharField(max_length=255)
-    make = models.CharField(max_length=255)
-    year = models.IntegerField()
-
-
 class Driver(User):
-    base_type = User.Types.DRIVER
     objects = DriverManager()
-
-    @property
-    def more(self):
-        return self.drivermore
 
     class Meta:
         proxy = True
