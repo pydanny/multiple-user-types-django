@@ -20,18 +20,6 @@ class User(AbstractUser):
     # Around the Globe.
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
 
-    # Verbose!
-    # What happens if you have 20-30 user types?
-    # What if you have 5 user types each with 20 fields?
-    driver_make = 
-    driver_model = 
-    driver_year = 
-
-    # JSON fields
-    # Verbose - still need to handle different field types
-    # Need to write custom handler for fields or serializers
-    more = models.JSONField(encoder="")
-
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
 
